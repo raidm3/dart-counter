@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -196,36 +197,41 @@ public class GameActivity extends AppCompatActivity {
         switch(v.getId()) {
             case R.id.shot_one_double:
                 if (checked) {
-                    scoreOneMultiplier = 2;
                     int currentProgress = scoreOneBar.getProgress();
+
+                    // set the multiplier, make sure the SeekBar is enabled, update score
+                    scoreOneMultiplier = 2;
+                    scoreOneBar.setEnabled(true);
                     scoreOneBar.setProgress(0);
                     scoreOneBar.setProgress(currentProgress);
                 }
                 break;
             case R.id.shot_one_triple:
-                if (checked)
+                if (checked) {
+                    int currentProgress = scoreOneBar.getProgress();
+
+                    // set the multiplier, make sure the SeekBar is enabled, update score
                     scoreOneMultiplier = 3;
+                    scoreOneBar.setEnabled(true);
+                    scoreOneBar.setProgress(0);
+                    scoreOneBar.setProgress(currentProgress);
+                }
                 break;
             case R.id.shot_one_bull:
-                if (checked)
-                    deactivateSeekBar(scoreOneBar, 25);
+                if (checked) {
+                    scoreOne = 25;
+                    scoreOneBar.setEnabled(false);
+                    scoreOneView.setText(String.format(Locale.GERMAN, "%d", scoreOne));
+                }
                 break;
             case R.id.shot_one_bulls_eye:
-                if (checked)
-                    deactivateSeekBar(scoreOneBar, 50);
+                if (checked) {
+                    scoreOne = 50;
+                    scoreOneBar.setEnabled(false);
+                    scoreOneView.setText(String.format(Locale.GERMAN, "%d", scoreOne));
+                }
                 break;
         }
-    }
-
-
-    /**
-     * Deactivates a SeekBar when bull or bulls eye got selected.
-     *
-     * @param seekbar - SeekBar to deactivate.
-     * @param points - points to set on the SeekBar (25 for bull or 50 for bulls eye)
-     */
-    private void deactivateSeekBar(SeekBar seekbar, int points) {
-        //TODO
     }
 
 
@@ -465,6 +471,15 @@ public class GameActivity extends AppCompatActivity {
      * @param v - View of Activity.
      */
     public void onUndoScoreClicked(View v) {
+
+        /* ******** NEW! ********* */
+        RadioGroup rGrpOne = (RadioGroup) findViewById(R.id.shot_one_radio_group);
+        int currentProgress = scoreOneBar.getProgress();
+        scoreOneBar.setEnabled(true);
+        scoreOneBar.setProgress(0);
+        rGrpOne.clearCheck();
+        /* ******** NEW! ********* */
+
         if (pointsClicked == 0) {
             return;
         }

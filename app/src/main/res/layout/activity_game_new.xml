@@ -73,20 +73,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp">
 
+            <TextView
+                android:id="@+id/shot_one_count"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <SeekBar
                 android:id="@+id/seekBarShotOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
-                android:max="20" />
-
-            <TextView
-                android:id="@+id/shot_one_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textStyle="bold" />
+                android:max="20"
+                android:padding="12dp" />
 
         </LinearLayout>
 
@@ -98,6 +100,7 @@
             android:layout_marginTop="6dp">
 
             <RadioGroup
+                android:id="@+id/shot_one_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -143,20 +146,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp">
 
+            <TextView
+                android:id="@+id/shot_two_count"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <SeekBar
                 android:id="@+id/seekBarShotTwo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
-                android:max="20" />
-
-            <TextView
-                android:id="@+id/shot_two_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textStyle="bold" />
+                android:max="20"
+                android:padding="12dp" />
 
         </LinearLayout>
 
@@ -202,31 +207,33 @@
             </RadioGroup>
         </LinearLayout>
 
-        <!-- Shot Two Slider -->
+        <!-- Shot Three Slider -->
         <LinearLayout
             android:id="@+id/slider_shot_three"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp">
 
+            <TextView
+                android:id="@+id/shot_three_count"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
             <SeekBar
                 android:id="@+id/seekBarShotThree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
-                android:max="20" />
-
-            <TextView
-                android:id="@+id/shot_three_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textStyle="bold" />
+                android:max="20"
+                android:padding="12dp" />
 
         </LinearLayout>
 
-        <!-- Shot Two Radio Buttons -->
+        <!-- Shot Three Radio Buttons -->
         <LinearLayout
             android:id="@+id/buttons_shot_three"
             android:layout_width="fill_parent"
@@ -306,7 +313,10 @@
                 android:id="@+id/shot_one_hint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4" />
+                android:layout_weight="4"
+                android:text="(15)"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Shot Two Score Line -->
@@ -337,7 +347,10 @@
                 android:id="@+id/shot_two_hint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4" />
+                android:layout_weight="4"
+                android:text="(Double 18)"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Shot Three Score Line -->
@@ -368,7 +381,9 @@
                 android:id="@+id/shot_three_hint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4" />
+                android:layout_weight="4"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Total Score Line -->
@@ -402,7 +417,9 @@
                 android:id="@+id/total_hint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4" />
+                android:layout_weight="4"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Button Check and Clear -->
