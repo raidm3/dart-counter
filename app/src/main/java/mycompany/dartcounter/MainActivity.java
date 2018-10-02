@@ -9,7 +9,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import mycompany.dartcounter.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private ActivityMainBinding mainBinding;
 
     private String[] games = {"301", "501"};
     private String[] players = {"1", "2", "3", "4"};

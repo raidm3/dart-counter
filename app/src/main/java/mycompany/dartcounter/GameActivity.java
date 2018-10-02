@@ -3,7 +3,6 @@ package mycompany.dartcounter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -18,6 +17,8 @@ import java.util.Locale;
 import mycompany.dartcounter.models.Player;
 
 public class GameActivity extends AppCompatActivity {
+
+    private ActivityGameBinding gameBinding;
 
     private int playerCount;
     private int game;
@@ -56,7 +57,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_new);
+        setContentView(R.layout.activity_game);
 
         // get intent which started this activity
         Intent i = getIntent();
@@ -229,6 +230,78 @@ public class GameActivity extends AppCompatActivity {
                     scoreOne = 50;
                     scoreOneBar.setEnabled(false);
                     scoreOneView.setText(String.format(Locale.GERMAN, "%d", scoreOne));
+                }
+                break;
+            case R.id.shot_two_double:
+                if (checked) {
+                    int currentProgress = scoreTwoBar.getProgress();
+
+                    // set the multiplier, make sure the SeekBar is enabled, update score
+                    scoreTwoMultiplier = 2;
+                    scoreTwoBar.setEnabled(true);
+                    scoreTwoBar.setProgress(0);
+                    scoreTwoBar.setProgress(currentProgress);
+                }
+                break;
+            case R.id.shot_two_triple:
+                if (checked) {
+                    int currentProgress = scoreTwoBar.getProgress();
+
+                    // set the multiplier, make sure the SeekBar is enabled, update score
+                    scoreTwoMultiplier = 3;
+                    scoreTwoBar.setEnabled(true);
+                    scoreTwoBar.setProgress(0);
+                    scoreTwoBar.setProgress(currentProgress);
+                }
+                break;
+            case R.id.shot_two_bull:
+                if (checked) {
+                    scoreTwo = 25;
+                    scoreTwoBar.setEnabled(false);
+                    scoreTwoView.setText(String.format(Locale.GERMAN, "%d", scoreTwo));
+                }
+                break;
+            case R.id.shot_two_bulls_eye:
+                if (checked) {
+                    scoreTwo = 50;
+                    scoreTwoBar.setEnabled(false);
+                    scoreTwoView.setText(String.format(Locale.GERMAN, "%d", scoreTwo));
+                }
+                break;
+            case R.id.shot_three_double:
+                if (checked) {
+                    int currentProgress = scoreThreeBar.getProgress();
+
+                    // set the multiplier, make sure the SeekBar is enabled, update score
+                    scoreThreeMultiplier = 2;
+                    scoreThreeBar.setEnabled(true);
+                    scoreThreeBar.setProgress(0);
+                    scoreThreeBar.setProgress(currentProgress);
+                }
+                break;
+            case R.id.shot_three_triple:
+                if (checked) {
+                    int currentProgress = scoreThreeBar.getProgress();
+
+                    // set the multiplier, make sure the SeekBar is enabled, update score
+                    scoreThreeMultiplier = 3;
+                    scoreThreeBar.setEnabled(true);
+                    scoreThreeBar.setProgress(0);
+                    scoreThreeBar.setProgress(currentProgress);
+                }
+                break;
+            case R.id.shot_three_bull:
+                if (checked) {
+                    scoreThree = 25;
+                    scoreThreeBar.setEnabled(false);
+                    scoreThreeView.setText(String.format(Locale.GERMAN, "%d", scoreThree));
+                }
+                break;
+            case R.id.shot_three_bulls_eye:
+                if (checked) {
+                    scoreThree = 50;
+                    scoreThreeBar.setEnabled(false);
+                    scoreThreeView.setText(String.format(Locale.GERMAN, "%d", scoreThree));
                 }
                 break;
         }
