@@ -18,8 +18,6 @@ import mycompany.dartcounter.models.Player;
 
 public class GameActivity extends AppCompatActivity {
 
-    private ActivityGameBinding gameBinding;
-
     private int playerCount;
     private int game;
     private TextView remainingPointsView;
@@ -36,7 +34,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView scoreThreeView;
     private TextView totalScoreView;
 
-    private int scoreOne;
+    public int scoreOne;
     private int scoreTwo;
     private int scoreThree;
     private int scoreOneMultiplier = 1;
@@ -172,6 +170,7 @@ public class GameActivity extends AppCompatActivity {
 
                 // Update the score of the score bar view
                 scoreBarView.setText(String.format(Locale.GERMAN, "%d", progressValue));
+                updateTotalSum();
             }
 
             // Notification that the user has started a touch gesture.
@@ -223,6 +222,7 @@ public class GameActivity extends AppCompatActivity {
                     scoreOne = 25;
                     scoreOneBar.setEnabled(false);
                     scoreOneView.setText(String.format(Locale.GERMAN, "%d", scoreOne));
+                    updateTotalSum();
                 }
                 break;
             case R.id.shot_one_bulls_eye:
@@ -230,6 +230,7 @@ public class GameActivity extends AppCompatActivity {
                     scoreOne = 50;
                     scoreOneBar.setEnabled(false);
                     scoreOneView.setText(String.format(Locale.GERMAN, "%d", scoreOne));
+                    updateTotalSum();
                 }
                 break;
             case R.id.shot_two_double:
@@ -259,6 +260,7 @@ public class GameActivity extends AppCompatActivity {
                     scoreTwo = 25;
                     scoreTwoBar.setEnabled(false);
                     scoreTwoView.setText(String.format(Locale.GERMAN, "%d", scoreTwo));
+                    updateTotalSum();
                 }
                 break;
             case R.id.shot_two_bulls_eye:
@@ -266,6 +268,7 @@ public class GameActivity extends AppCompatActivity {
                     scoreTwo = 50;
                     scoreTwoBar.setEnabled(false);
                     scoreTwoView.setText(String.format(Locale.GERMAN, "%d", scoreTwo));
+                    updateTotalSum();
                 }
                 break;
             case R.id.shot_three_double:
@@ -295,6 +298,7 @@ public class GameActivity extends AppCompatActivity {
                     scoreThree = 25;
                     scoreThreeBar.setEnabled(false);
                     scoreThreeView.setText(String.format(Locale.GERMAN, "%d", scoreThree));
+                    updateTotalSum();
                 }
                 break;
             case R.id.shot_three_bulls_eye:
@@ -302,9 +306,19 @@ public class GameActivity extends AppCompatActivity {
                     scoreThree = 50;
                     scoreThreeBar.setEnabled(false);
                     scoreThreeView.setText(String.format(Locale.GERMAN, "%d", scoreThree));
+                    updateTotalSum();
                 }
                 break;
         }
+    }
+
+
+    /**
+     * Updates the current total sum of all shots.
+     */
+    private void updateTotalSum() {
+        currentSum = scoreOne + scoreTwo + scoreThree;
+        totalScoreView.setText(String.format(Locale.GERMAN, "%d", currentSum));
     }
 
 
