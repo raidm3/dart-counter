@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView scoreThreeView;
     private TextView totalScoreView;
 
-    public int scoreOne;
+    private int scoreOne;
     private int scoreTwo;
     private int scoreThree;
     private int scoreOneMultiplier = 1;
@@ -118,23 +118,53 @@ public class GameActivity extends AppCompatActivity {
         bull = (Button)findViewById(R.id.points_bull);
 
         // set scores to default values
-        resetScoreValues();
+        resetAllInputs();
+    }
+
+
+    /**
+     * Click event handler for clearing all inputs.
+     * @param v
+     */
+    public void clearInputs(View v) {
+        resetAllInputs();
     }
 
 
     /**
      * Resets all score values to zero.
      */
-    private void resetScoreValues() {
+    private void resetAllInputs() {
         // Reset progress on SeekBars
         scoreOneBar.setProgress(0);
+        scoreOneBar.setEnabled(true);
         scoreTwoBar.setProgress(0);
+        scoreTwoBar.setEnabled(true);
         scoreThreeBar.setProgress(0);
+        scoreThreeBar.setEnabled(true);
 
         // Set score counters to progress
         scoreOneBarView.setText(String.format(Locale.GERMAN, "%d", scoreOneBar.getProgress()));
         scoreTwoBarView.setText(String.format(Locale.GERMAN, "%d", scoreTwoBar.getProgress()));
         scoreThreeBarView.setText(String.format(Locale.GERMAN, "%d", scoreThreeBar.getProgress()));
+
+        // Clear all radio buttons
+        RadioGroup rGrpOne = (RadioGroup) findViewById(R.id.shot_one_radio_group);
+        RadioGroup rGrpTwo = (RadioGroup) findViewById(R.id.shot_two_radio_group);
+        RadioGroup rGrpThree = (RadioGroup) findViewById(R.id.shot_three_radio_group);
+        rGrpOne.clearCheck();
+        rGrpTwo.clearCheck();
+        rGrpThree.clearCheck();
+
+        // Reset all multipliers
+        scoreOneMultiplier = 1;
+        scoreTwoMultiplier = 1;
+        scoreThreeMultiplier = 1;
+
+        // Reset all scores
+        scoreOne = 0;
+        scoreTwo = 0;
+        scoreThree = 0;
 
         // Set scores to progress
         scoreOneView.setText(String.format(Locale.GERMAN, "%d", scoreOneBar.getProgress()));
@@ -146,6 +176,10 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Initialize event handler for SeekBars. Fires whenever the progress value changes.
+     *
+     * @param seekbar SeekBar to setup event listener.
+     * @param scoreBarView Score of SeekBar.
+     * @param scoreView Current score view.
      */
     private void initializeSeekBarEventListener(SeekBar seekbar, final TextView scoreBarView, final TextView scoreView) {
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -170,7 +204,7 @@ public class GameActivity extends AppCompatActivity {
 
                 // Update the score of the score bar view
                 scoreBarView.setText(String.format(Locale.GERMAN, "%d", progressValue));
-                updateTotalSum();
+                updateScores();
             }
 
             // Notification that the user has started a touch gesture.
@@ -222,7 +256,7 @@ public class GameActivity extends AppCompatActivity {
                     scoreOne = 25;
                     scoreOneBar.setEnabled(false);
                     scoreOneView.setText(String.format(Locale.GERMAN, "%d", scoreOne));
-                    updateTotalSum();
+                    updateScores();
                 }
                 break;
             case R.id.shot_one_bulls_eye:
@@ -230,7 +264,7 @@ public class GameActivity extends AppCompatActivity {
                     scoreOne = 50;
                     scoreOneBar.setEnabled(false);
                     scoreOneView.setText(String.format(Locale.GERMAN, "%d", scoreOne));
-                    updateTotalSum();
+                    updateScores();
                 }
                 break;
             case R.id.shot_two_double:
@@ -260,7 +294,7 @@ public class GameActivity extends AppCompatActivity {
                     scoreTwo = 25;
                     scoreTwoBar.setEnabled(false);
                     scoreTwoView.setText(String.format(Locale.GERMAN, "%d", scoreTwo));
-                    updateTotalSum();
+                    updateScores();
                 }
                 break;
             case R.id.shot_two_bulls_eye:
@@ -268,7 +302,7 @@ public class GameActivity extends AppCompatActivity {
                     scoreTwo = 50;
                     scoreTwoBar.setEnabled(false);
                     scoreTwoView.setText(String.format(Locale.GERMAN, "%d", scoreTwo));
-                    updateTotalSum();
+                    updateScores();
                 }
                 break;
             case R.id.shot_three_double:
@@ -298,7 +332,7 @@ public class GameActivity extends AppCompatActivity {
                     scoreThree = 25;
                     scoreThreeBar.setEnabled(false);
                     scoreThreeView.setText(String.format(Locale.GERMAN, "%d", scoreThree));
-                    updateTotalSum();
+                    updateScores();
                 }
                 break;
             case R.id.shot_three_bulls_eye:
@@ -306,7 +340,7 @@ public class GameActivity extends AppCompatActivity {
                     scoreThree = 50;
                     scoreThreeBar.setEnabled(false);
                     scoreThreeView.setText(String.format(Locale.GERMAN, "%d", scoreThree));
-                    updateTotalSum();
+                    updateScores();
                 }
                 break;
         }
@@ -316,9 +350,14 @@ public class GameActivity extends AppCompatActivity {
     /**
      * Updates the current total sum of all shots.
      */
-    private void updateTotalSum() {
+    private void updateScores() {
+        // Calculate current sum and remaining points
         currentSum = scoreOne + scoreTwo + scoreThree;
+        remainingPoints = players.get(currentPlayer).getPoints() - currentSum;
+
+        // Update views
         totalScoreView.setText(String.format(Locale.GERMAN, "%d", currentSum));
+        remainingPointsView.setText(String.format(Locale.GERMAN, "%d", remainingPoints));
     }
 
 
@@ -490,9 +529,6 @@ public class GameActivity extends AppCompatActivity {
         Player player = players.get(currentPlayer);
         this.pointsClicked = 0;
 
-        // set score values to 0 again
-        resetScoreValues();
-
         // check points of current player
         if ((player.getPoints() - currentSum) < 0) {
             Toast.makeText(getApplicationContext(), "Throw over!", Toast.LENGTH_SHORT).show();
@@ -544,6 +580,7 @@ public class GameActivity extends AppCompatActivity {
 
         // reset current sum
         this.currentSum = 0;
+        resetAllInputs();
 
         // set remaining points to players current points
         remainingPoints = player.getPoints();
@@ -558,15 +595,6 @@ public class GameActivity extends AppCompatActivity {
      * @param v - View of Activity.
      */
     public void onUndoScoreClicked(View v) {
-
-        /* ******** NEW! ********* */
-        RadioGroup rGrpOne = (RadioGroup) findViewById(R.id.shot_one_radio_group);
-        int currentProgress = scoreOneBar.getProgress();
-        scoreOneBar.setEnabled(true);
-        scoreOneBar.setProgress(0);
-        rGrpOne.clearCheck();
-        /* ******** NEW! ********* */
-
         if (pointsClicked == 0) {
             return;
         }
