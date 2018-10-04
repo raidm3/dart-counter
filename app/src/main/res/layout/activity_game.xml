@@ -27,7 +27,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:visibility="gone" />
 
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:visibility="gone" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:visibility="gone" />
 
             <TextView
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:visibility="gone" />
         </LinearLayout>
 
@@ -67,31 +67,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp">
 
-            <!--<Button-->
-            <!--android:id="@+id/points_double"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginRight="4dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/button_points"-->
-            <!--android:hapticFeedbackEnabled="true"-->
-            <!--android:onClick="onSpecialButtonClicked"-->
-            <!--android:text="DOUBLE">-->
-
-            <!--</Button>-->
-
-            <!--<Button-->
-            <!--android:id="@+id/points_triple"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/button_points"-->
-            <!--android:hapticFeedbackEnabled="true"-->
-            <!--android:onClick="onSpecialButtonClicked"-->
-            <!--android:text="TRIPLE">-->
-
-            <!--</Button>-->
-
             <ToggleButton
                 android:id="@+id/points_double"
                 android:layout_width="wrap_content"
@@ -101,7 +76,8 @@
                 android:background="@drawable/button_points"
                 android:onClick="onSpecialButtonClicked"
                 android:textOff="DOUBLE"
-                android:textOn="DOUBLE" />
+                android:textOn="DOUBLE"
+                android:textSize="16sp" />
 
             <ToggleButton
                 android:id="@+id/points_triple"
@@ -111,7 +87,8 @@
                 android:background="@drawable/button_points"
                 android:onClick="onSpecialButtonClicked"
                 android:textOff="TRIPLE"
-                android:textOn="TRIPLE" />
+                android:textOn="TRIPLE"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -131,7 +108,8 @@
                 android:background="@drawable/button_points"
                 android:longClickable="true"
                 android:onClick="onPointClicked"
-                android:text="1">
+                android:text="1"
+                android:textSize="16sp">
 
             </Button>
 
@@ -143,7 +121,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="2">
+                android:text="2"
+                android:textSize="16sp">
 
             </Button>
 
@@ -155,7 +134,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="3">
+                android:text="3"
+                android:textSize="16sp">
 
             </Button>
 
@@ -166,7 +146,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="4">
+                android:text="4"
+                android:textSize="16sp">
 
             </Button>
         </LinearLayout>
@@ -186,7 +167,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="5">
+                android:text="5"
+                android:textSize="16sp">
 
             </Button>
 
@@ -198,7 +180,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="6">
+                android:text="6"
+                android:textSize="16sp">
 
             </Button>
 
@@ -210,7 +193,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="7">
+                android:text="7"
+                android:textSize="16sp">
 
             </Button>
 
@@ -221,7 +205,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="8">
+                android:text="8"
+                android:textSize="16sp">
 
             </Button>
         </LinearLayout>
@@ -241,7 +226,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="9">
+                android:text="9"
+                android:textSize="16sp">
 
             </Button>
 
@@ -253,7 +239,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="10">
+                android:text="10"
+                android:textSize="16sp">
 
             </Button>
 
@@ -265,7 +252,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="11">
+                android:text="11"
+                android:textSize="16sp">
 
             </Button>
 
@@ -276,7 +264,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="12">
+                android:text="12"
+                android:textSize="16sp">
 
             </Button>
         </LinearLayout>
@@ -296,7 +285,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="13">
+                android:text="13"
+                android:textSize="16sp">
 
             </Button>
 
@@ -308,7 +298,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="14"></Button>
+                android:text="14"
+                android:textSize="16sp"></Button>
 
             <Button
                 android:id="@+id/points_15"
@@ -318,7 +309,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="15">
+                android:text="15"
+                android:textSize="16sp">
 
             </Button>
 
@@ -329,7 +321,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="16"></Button>
+                android:text="16"
+                android:textSize="16sp"></Button>
         </LinearLayout>
 
         <!-- Points 17-20 -->
@@ -347,7 +340,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="17"></Button>
+                android:text="17"
+                android:textSize="16sp"></Button>
 
             <Button
                 android:id="@+id/points_18"
@@ -357,7 +351,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="18"></Button>
+                android:text="18"
+                android:textSize="16sp"></Button>
 
             <Button
                 android:id="@+id/points_19"
@@ -367,7 +362,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="19"></Button>
+                android:text="19"
+                android:textSize="16sp"></Button>
 
             <Button
                 android:id="@+id/points_20"
@@ -376,7 +372,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="20"></Button>
+                android:text="20"
+                android:textSize="16sp"></Button>
         </LinearLayout>
 
         <!-- Bull and Bulls Eye -->
@@ -394,7 +391,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="BULL">
+                android:text="BULL"
+                android:textSize="16sp">
 
             </Button>
 
@@ -405,7 +403,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
-                android:text="BULLS EYE">
+                android:text="BULLS EYE"
+                android:textSize="16sp">
 
             </Button>
         </LinearLayout>
@@ -507,7 +506,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:text="Remaining points:"
-                android:textSize="15sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/remainingScore"
@@ -516,7 +515,7 @@
                 android:layout_weight="10"
                 android:gravity="start"
                 android:text="1"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -537,7 +536,8 @@
                 android:background="@drawable/button_cancel"
                 android:onClick="onUndoScoreClicked"
                 android:text="Undo"
-                android:textColor="#ffffff">
+                android:textColor="#ffffff"
+                android:textSize="16sp">
 
             </Button>
 
@@ -551,7 +551,8 @@
                 android:hapticFeedbackEnabled="true"
                 android:onClick="onAcceptClicked"
                 android:text="Accept"
-                android:textColor="#ffffff">
+                android:textColor="#ffffff"
+                android:textSize="16sp">
 
             </Button>
         </LinearLayout>

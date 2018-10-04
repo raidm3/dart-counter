@@ -27,12 +27,12 @@
         android:id="@+id/playerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="28dp"
         android:gravity="center"
         android:text="@string/playerText"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headingText" />
 
@@ -40,12 +40,12 @@
         android:id="@+id/gameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="28dp"
         android:gravity="center"
         android:text="@string/gameText"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playerNameThree" />
 
@@ -53,9 +53,9 @@
         android:id="@+id/playerSpinner"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="36dp"
         android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/playerText"
         app:layout_constraintTop_toBottomOf="@+id/headingText" />
@@ -64,9 +64,9 @@
         android:id="@+id/gameSpinner"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintStart_toEndOf="@+id/gameText"
         app:layout_constraintTop_toBottomOf="@+id/playerNameThree" />
 
@@ -89,68 +89,74 @@
 
     <EditText
         android:id="@+id/playerNameOne"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="120dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textCapWords"
         android:maxLength="8"
         android:nextFocusDown="@+id/playerNameTwo"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/playerNameTwo"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="110dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textCapWords"
         android:maxLength="8"
         android:nextFocusDown="@+id/playerNameThree"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/playerNameOne"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/playerNameThree"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textCapWords"
         android:maxLength="8"
         android:nextFocusDown="@+id/playerNameFour"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playerNameOne" />
 
     <EditText
         android:id="@+id/playerNameFour"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textCapWords"
         android:maxLength="8"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/playerNameThree"
         app:layout_constraintTop_toBottomOf="@+id/playerNameTwo" />
 
     <RadioGroup
@@ -170,7 +176,8 @@
             android:layout_marginRight="8dp"
             android:layout_weight="1"
             android:checked="true"
-            android:text="Single Out" />
+            android:text="Single Out"
+            android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/radioButton2"
@@ -179,7 +186,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_weight="1"
-            android:text="Double Out" />
+            android:text="Double Out"
+            android:textSize="20sp" />
     </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>
