@@ -85,6 +85,6 @@ public class Player {
 
 
     public String toString() {
-        return this.name + ": " + this.points;
+        return this.name + "\n" + this.points;
     }
 }

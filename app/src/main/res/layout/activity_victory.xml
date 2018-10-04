@@ -215,16 +215,21 @@
                 </TableRow>
             </TableLayout>
         </TableRow>
+
+        <TableRow
+            android:gravity="center_horizontal" >
+            <Button
+                android:id="@+id/return_to_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/button_primary"
+                android:onClick="returnToHome"
+                android:text="Back to Home!"
+                android:textColor="#ffffff" />
+        </TableRow>
     </TableLayout>
-
-
-    <Button
-        android:id="@+id/return_to_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="returnToHome"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/button_primary"
-        android:textColor="#ffffff"
-        android:text="Back to Home!" />
 </LinearLayout>

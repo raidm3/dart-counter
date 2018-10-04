@@ -17,5 +17,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="quit_game_dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">@color/colorCancel</item>
+    </style>
+
 
 </resources>

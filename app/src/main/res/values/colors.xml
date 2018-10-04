@@ -2,9 +2,10 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FFA500</color>
+    <color name="colorAccent">#E5AC44</color>
     <color name="colorAccentLight">#FFC04C</color>
-    <color name="colorAccept">#44D668</color>
+    <color name="colorAccept">#29823F</color>
+    <color name="colorAcceptDark">#1B562A</color>
     <color name="colorCancel">#C93434</color>
     <color name="colorCancelDark">#8C2424</color>
     <color name="colorSpecial">#D6B40E</color>

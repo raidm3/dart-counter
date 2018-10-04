@@ -3,36 +3,58 @@ package mycompany.dartcounter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    private String[] games = {"301", "501"};
-    private String[] players = {"1", "2", "3", "4"};
-    private int currentGame = 0;
-    private int currentPlayerCount = 0;
+    private String numberOfPlayers = "1";
+    private String game = "301";
+    private String[] playerNames = new String[4];
+
+    private EditText playerOneNameInput;
+    private EditText playerTwoNameInput;
+    private EditText playerThreeNameInput;
+    private EditText playerFourNameInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         // set onclick listener on start button_primary
         Button startButton = (Button) findViewById(R.id.startBtn);
         startButton.setOnClickListener(this);
 
-        // set button_primary values to default
-        Button gameButton = (Button) findViewById(R.id.gameButton);
-        Button playerButton = (Button) findViewById(R.id.playerButton);
-        gameButton.setText(games[0]);
-        playerButton.setText(players[0]);
+
+        // initialize player name text inputs
+        playerOneNameInput = (EditText) findViewById(R.id.playerNameOne);
+        playerTwoNameInput = (EditText) findViewById(R.id.playerNameTwo);
+        playerThreeNameInput = (EditText) findViewById(R.id.playerNameThree);
+        playerFourNameInput = (EditText) findViewById(R.id.playerNameFour);
+
+        // populate player spinner
+        Spinner playerSpinner = (Spinner) findViewById(R.id.playerSpinner);
+        ArrayAdapter<CharSequence> playerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.players_number, android.R.layout.simple_spinner_item);
+        playerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        playerSpinner.setAdapter(playerAdapter);
+        playerSpinner.setOnItemSelectedListener(this);
+
+        // populate game spinner
+        Spinner gameSpinner = (Spinner) findViewById(R.id.gameSpinner);
+        ArrayAdapter<CharSequence> gameAdapter = ArrayAdapter.createFromResource(this,
+                R.array.games, android.R.layout.simple_spinner_item);
+        gameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gameSpinner.setAdapter(gameAdapter);
+        gameSpinner.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -59,33 +81,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        // Get all player names
+        playerNames[0] = playerOneNameInput.getText().toString().equals("") ? "Player1" : playerOneNameInput.getText().toString();
+        playerNames[1] = playerTwoNameInput.getText().toString().equals("") ? "Player2" : playerTwoNameInput.getText().toString();
+        playerNames[2] = playerThreeNameInput.getText().toString().equals("") ? "Player3" : playerThreeNameInput.getText().toString();
+        playerNames[3] = playerFourNameInput.getText().toString().equals("") ? "Player4" : playerFourNameInput.getText().toString();
+
+        // Prepare and start new Intent
         Intent gameIntent = new Intent(this, GameActivity.class);
-        gameIntent.putExtra("players", players[currentPlayerCount]);
-        gameIntent.putExtra("game", games[currentGame]);
+        gameIntent.putExtra("players", numberOfPlayers);
+        gameIntent.putExtra("playerNames", playerNames);
+        gameIntent.putExtra("game", game);
         startActivity(gameIntent);
     }
 
-    public void changeGame(View view) {
-        Button gameButton = (Button) findViewById(R.id.gameButton);
 
-        currentGame++;
-        if (currentGame < games.length) {
-            gameButton.setText(games[currentGame]);
-        } else {
-            currentGame = 0;
-            gameButton.setText(games[currentGame]);
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if (adapterView.getId() == R.id.playerSpinner) {
+            numberOfPlayers = (String) adapterView.getItemAtPosition(i);
+
+            // Hide/show name input fields depending on number of players selected.
+            switch (numberOfPlayers) {
+                case "1":
+                    playerOneNameInput.setVisibility(View.VISIBLE);
+                    playerTwoNameInput.setVisibility(View.INVISIBLE);
+                    playerThreeNameInput.setVisibility(View.INVISIBLE);
+                    playerFourNameInput.setVisibility(View.INVISIBLE);
+                    break;
+                case "2":
+                    playerOneNameInput.setVisibility(View.VISIBLE);
+                    playerTwoNameInput.setVisibility(View.VISIBLE);
+                    playerThreeNameInput.setVisibility(View.INVISIBLE);
+                    playerFourNameInput.setVisibility(View.INVISIBLE);
+                    break;
+                case "3":
+                    playerOneNameInput.setVisibility(View.VISIBLE);
+                    playerTwoNameInput.setVisibility(View.VISIBLE);
+                    playerThreeNameInput.setVisibility(View.VISIBLE);
+                    playerFourNameInput.setVisibility(View.INVISIBLE);
+                    break;
+                case "4":
+                    playerOneNameInput.setVisibility(View.VISIBLE);
+                    playerTwoNameInput.setVisibility(View.VISIBLE);
+                    playerThreeNameInput.setVisibility(View.VISIBLE);
+                    playerFourNameInput.setVisibility(View.VISIBLE);
+                    break;
+            }
+        } else if (adapterView.getId() == R.id.gameSpinner) {
+            game = (String) adapterView.getItemAtPosition(i);
         }
     }
 
-    public void changePlayer(View view) {
-        Button playerButton = (Button) findViewById(R.id.playerButton);
-
-        currentPlayerCount++;
-        if (currentPlayerCount < players.length) {
-            playerButton.setText(players[currentPlayerCount]);
-        } else {
-            currentPlayerCount = 0;
-            playerButton.setText(players[currentPlayerCount]);
-        }
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        // Another interface callback
     }
 }

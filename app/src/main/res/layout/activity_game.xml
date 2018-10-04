@@ -1,442 +1,531 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/mainLayout"
+        android:id="@+id/topLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="8dp">
+        android:paddingRight="10dp">
 
         <!-- Player Section -->
         <LinearLayout
             android:id="@+id/playerLayout"
-            android:layout_height="wrap_content"
             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/playerOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textSize="18sp"
+                android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:visibility="gone"/>
+                android:textSize="16sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/playerTwo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textSize="18sp"
+                android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:visibility="gone"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/playerLayout2"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:orientation="horizontal">
+                android:textSize="16sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/playerThree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textSize="18sp"
+                android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:visibility="gone"/>
+                android:textSize="16sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/playerFour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textSize="18sp"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:visibility="gone"/>
-        </LinearLayout>
-
-        <!-- Shot One Slider -->
-        <LinearLayout
-            android:id="@+id/slider_shot_one"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp">
-
-            <TextView
-                android:id="@+id/shot_one_count"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:visibility="gone" />
+        </LinearLayout>
 
-            <SeekBar
-                android:id="@+id/seekBarShotOne"
+        <!-- Double/Triple Section -->
+        <LinearLayout
+            android:id="@+id/LinearLayout00"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <!--<Button-->
+            <!--android:id="@+id/points_double"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginRight="4dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/button_points"-->
+            <!--android:hapticFeedbackEnabled="true"-->
+            <!--android:onClick="onSpecialButtonClicked"-->
+            <!--android:text="DOUBLE">-->
+
+            <!--</Button>-->
+
+            <!--<Button-->
+            <!--android:id="@+id/points_triple"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/button_points"-->
+            <!--android:hapticFeedbackEnabled="true"-->
+            <!--android:onClick="onSpecialButtonClicked"-->
+            <!--android:text="TRIPLE">-->
+
+            <!--</Button>-->
+
+            <ToggleButton
+                android:id="@+id/points_double"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="9"
-                android:max="20"
-                android:padding="12dp" />
-
-        </LinearLayout>
-
-        <!-- Shot One Radio Buttons -->
-        <LinearLayout
-            android:id="@+id/buttons_shot_one"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp">
-
-            <RadioGroup
-                android:id="@+id/shot_one_radio_group"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/shot_one_double"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/double_shot" />
-
-                <RadioButton
-                    android:id="@+id/shot_one_triple"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/triple_shot" />
-
-                <RadioButton
-                    android:id="@+id/shot_one_bull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/bull_shot" />
-
-                <RadioButton
-                    android:id="@+id/shot_one_bulls_eye"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/bulls_eye_shot" />
-            </RadioGroup>
-        </LinearLayout>
-
-        <!-- Shot Two Slider -->
-        <LinearLayout
-            android:id="@+id/slider_shot_two"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp">
-
-            <TextView
-                android:id="@+id/shot_two_count"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:background="@drawable/button_points"
+                android:onClick="onSpecialButtonClicked"
+                android:textOff="DOUBLE"
+                android:textOn="DOUBLE" />
 
-            <SeekBar
-                android:id="@+id/seekBarShotTwo"
+            <ToggleButton
+                android:id="@+id/points_triple"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="9"
-                android:max="20"
-                android:padding="12dp" />
-
-        </LinearLayout>
-
-        <!-- Shot Two Radio Buttons -->
-        <LinearLayout
-            android:id="@+id/buttons_shot_two"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp">
-
-            <RadioGroup
-                android:id="@+id/shot_two_radio_group"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/shot_two_double"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/double_shot" />
-
-                <RadioButton
-                    android:id="@+id/shot_two_triple"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/triple_shot" />
-
-                <RadioButton
-                    android:id="@+id/shot_two_bull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/bull_shot" />
-
-                <RadioButton
-                    android:id="@+id/shot_two_bulls_eye"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/bulls_eye_shot" />
-            </RadioGroup>
-        </LinearLayout>
-
-        <!-- Shot Three Slider -->
-        <LinearLayout
-            android:id="@+id/slider_shot_three"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp">
-
-            <TextView
-                android:id="@+id/shot_three_count"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <SeekBar
-                android:id="@+id/seekBarShotThree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="9"
-                android:max="20"
-                android:padding="12dp" />
+                android:background="@drawable/button_points"
+                android:onClick="onSpecialButtonClicked"
+                android:textOff="TRIPLE"
+                android:textOn="TRIPLE" />
 
         </LinearLayout>
 
-        <!-- Shot Three Radio Buttons -->
+        <!-- Points 1-4 -->
         <LinearLayout
-            android:id="@+id/buttons_shot_three"
+            android:id="@+id/LinearLayout01"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp">
+            android:layout_marginTop="4dp">
 
-            <RadioGroup
-                android:id="@+id/shot_three_radio_group"
+            <Button
+                android:id="@+id/points_1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:longClickable="true"
+                android:onClick="onPointClicked"
+                android:text="1">
 
-                <RadioButton
-                    android:id="@+id/shot_three_double"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/double_shot" />
+            </Button>
 
-                <RadioButton
-                    android:id="@+id/shot_three_triple"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/triple_shot" />
+            <Button
+                android:id="@+id/points_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="2">
 
-                <RadioButton
-                    android:id="@+id/shot_three_bull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/bull_shot" />
+            </Button>
 
-                <RadioButton
-                    android:id="@+id/shot_three_bulls_eye"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="specialRadioButtonClick"
-                    android:text="@string/bulls_eye_shot" />
-            </RadioGroup>
+            <Button
+                android:id="@+id/points_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="3">
+
+            </Button>
+
+            <Button
+                android:id="@+id/points_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="4">
+
+            </Button>
+        </LinearLayout>
+
+        <!-- Points 5-8 -->
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:id="@+id/points_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="5">
+
+            </Button>
+
+            <Button
+                android:id="@+id/points_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="6">
+
+            </Button>
+
+            <Button
+                android:id="@+id/points_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="7">
+
+            </Button>
+
+            <Button
+                android:id="@+id/points_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="8">
+
+            </Button>
+        </LinearLayout>
+
+        <!-- Points 9-12 -->
+        <LinearLayout
+            android:id="@+id/LinearLayout03"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:id="@+id/points_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="9">
+
+            </Button>
+
+            <Button
+                android:id="@+id/points_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="10">
+
+            </Button>
+
+            <Button
+                android:id="@+id/points_11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="11">
+
+            </Button>
+
+            <Button
+                android:id="@+id/points_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="12">
+
+            </Button>
+        </LinearLayout>
+
+        <!-- Points 13-16 -->
+        <LinearLayout
+            android:id="@+id/LinearLayout04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:id="@+id/points_13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="13">
+
+            </Button>
+
+            <Button
+                android:id="@+id/points_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="14"></Button>
+
+            <Button
+                android:id="@+id/points_15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="15">
+
+            </Button>
+
+            <Button
+                android:id="@+id/points_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="16"></Button>
+        </LinearLayout>
+
+        <!-- Points 17-20 -->
+        <LinearLayout
+            android:id="@+id/LinearLayout05"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:id="@+id/points_17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="17"></Button>
+
+            <Button
+                android:id="@+id/points_18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="18"></Button>
+
+            <Button
+                android:id="@+id/points_19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="19"></Button>
+
+            <Button
+                android:id="@+id/points_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="20"></Button>
+        </LinearLayout>
+
+        <!-- Bull and Bulls Eye -->
+        <LinearLayout
+            android:id="@+id/LinearLayout06"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:id="@+id/points_bull"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="BULL">
+
+            </Button>
+
+            <Button
+                android:id="@+id/points_bulls_eye"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="BULLS EYE">
+
+            </Button>
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/mainLayoutBot"
+        android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true">
 
-        <!-- Shot One Score Line -->
+        <!-- Score Section -->
         <LinearLayout
-            android:id="@+id/shot_one_score_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp">
+            android:id="@+id/scoreLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
             <TextView
-                android:id="@+id/shot_one_text"
-                android:layout_width="0dp"
+                android:id="@+id/scoreOne"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="@string/shot_one_text"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/shot_one_score"
-                android:layout_width="0dp"
+                android:id="@+id/firstAddSign"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:text="+"
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/shot_one_hint"
-                android:layout_width="0dp"
+                android:id="@+id/scoreTwo"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:text="(15)"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <!-- Shot Two Score Line -->
-        <LinearLayout
-            android:id="@+id/shot_two_score_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="6dp">
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/shot_two_text"
-                android:layout_width="0dp"
+                android:id="@+id/secondAddSign"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="@string/shot_two_text"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:text="+"
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/shot_two_score"
-                android:layout_width="0dp"
+                android:id="@+id/scoreThree"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:textSize="16sp"/>
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/shot_two_hint"
-                android:layout_width="0dp"
+                android:id="@+id/equalSign"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:text="(Double 18)"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <!-- Shot Three Score Line -->
-        <LinearLayout
-            android:id="@+id/shot_three_score_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="6dp">
+                android:layout_weight="1"
+                android:text="="
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/shot_three_text"
-                android:layout_width="0dp"
+                android:id="@+id/totalScore"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="@string/shot_three_text"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/shot_three_score"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/shot_three_hint"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <!-- Total Score Line -->
-        <LinearLayout
-            android:id="@+id/total_score_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="12dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="8dp">
-
-            <TextView
-                android:id="@+id/total_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="@string/total_text"
-                android:textSize="16sp"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="22sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/total_score"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/total_hint"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="12sp" />
         </LinearLayout>
 
-        <!-- Button Check and Clear -->
+        <!-- Remaining Points Section -->
+        <LinearLayout
+            android:id="@+id/scoreInfoLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp">
+
+            <TextView
+                android:id="@+id/remainingScoreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="Remaining points:"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/remainingScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:gravity="start"
+                android:text="1"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Button Check and Undo -->
         <LinearLayout
             android:id="@+id/checkLayout"
-            android:layout_height="wrap_content"
             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_weight="1">
 
             <Button
@@ -446,50 +535,26 @@
                 android:layout_marginRight="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_cancel"
-                android:onClick="clearInputs"
-                android:text="@string/clear_inputs"
-                android:textColor="#000000"></Button>
+                android:onClick="onUndoScoreClicked"
+                android:text="Undo"
+                android:textColor="#ffffff">
+
+            </Button>
 
             <Button
                 android:id="@+id/check_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="4dp"
-                android:onClick="onCheckScoreClicked"
-                android:background="@drawable/button_primary"
-                android:textColor="#ffffff"
-                android:text="@string/check_shot"
-                android:hapticFeedbackEnabled="true">
-            </Button>
-        </LinearLayout>
-
-        <!-- Remaining Points Section -->
-        <LinearLayout
-            android:id="@+id/scoreInfoLayout"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:layout_marginBottom="6dp">
-
-            <TextView
-                android:id="@+id/remainingScoreText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
                 android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="Remaining points:"/>
+                android:background="@drawable/button_accept"
+                android:hapticFeedbackEnabled="true"
+                android:onClick="onAcceptClicked"
+                android:text="Accept"
+                android:textColor="#ffffff">
 
-            <TextView
-                android:id="@+id/remainingScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:layout_weight="10"
-                android:gravity="start"
-                android:text="1"/>
+            </Button>
         </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>
-
