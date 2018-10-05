@@ -1,0 +1,12 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/button_spinner"
+    android:ellipsize="marquee"
+    android:gravity="center"
+    android:paddingLeft="30dp"
+    android:paddingTop="6dp"
+    android:paddingRight="30dp"
+    android:paddingBottom="6dp"
+    android:singleLine="true"
+    android:textSize="18sp" />

@@ -400,10 +400,23 @@
                 android:id="@+id/points_bulls_eye"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_points"
                 android:onClick="onPointClicked"
                 android:text="BULLS EYE"
+                android:textSize="16sp">
+
+            </Button>
+
+            <Button
+                android:id="@+id/points_classic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_points"
+                android:onClick="onPointClicked"
+                android:text="CLASSIC"
                 android:textSize="16sp">
 
             </Button>

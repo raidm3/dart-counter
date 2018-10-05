@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String numberOfPlayers = "1";
     private String game = "301";
     private String[] playerNames = new String[4];
+    private String finishSetting = "singleOut";
 
     private EditText playerOneNameInput;
     private EditText playerTwoNameInput;
@@ -43,16 +45,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // populate player spinner
         Spinner playerSpinner = (Spinner) findViewById(R.id.playerSpinner);
         ArrayAdapter<CharSequence> playerAdapter = ArrayAdapter.createFromResource(this,
-                R.array.players_number, android.R.layout.simple_spinner_item);
-        playerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.array.players_number, R.layout.custom_spinner_item);
+        playerAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         playerSpinner.setAdapter(playerAdapter);
         playerSpinner.setOnItemSelectedListener(this);
 
         // populate game spinner
         Spinner gameSpinner = (Spinner) findViewById(R.id.gameSpinner);
         ArrayAdapter<CharSequence> gameAdapter = ArrayAdapter.createFromResource(this,
-                R.array.games, android.R.layout.simple_spinner_item);
-        gameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.array.games, R.layout.custom_spinner_item);
+        gameAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         gameSpinner.setAdapter(gameAdapter);
         gameSpinner.setOnItemSelectedListener(this);
     }
@@ -92,7 +94,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gameIntent.putExtra("players", numberOfPlayers);
         gameIntent.putExtra("playerNames", playerNames);
         gameIntent.putExtra("game", game);
+        gameIntent.putExtra("finishSetting", finishSetting);
         startActivity(gameIntent);
+    }
+
+
+    /**
+     * Click event handler for the finish settings radio buttons.
+     * @param v
+     */
+    public void onFinishSettingClicked(View v) {
+        boolean checked = ((RadioButton) v).isChecked();
+
+        // Check which radio button was clicked
+        switch (v.getId()) {
+            case R.id.singleOutBtn:
+                if (checked)
+                    finishSetting = "singleOut";
+                break;
+            case R.id.doubleOutBtn:
+                if (checked)
+                    finishSetting = "doubleOut";
+                break;
+        }
     }
 
 

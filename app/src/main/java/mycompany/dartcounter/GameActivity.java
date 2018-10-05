@@ -30,6 +30,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView[] playerFields = new TextView[4];
     private boolean isActivityUsed = false;
     private String[] playerNames;
+    private String finishSetting;
 
     // Score Views
     private TextView scoreOneView;
@@ -41,6 +42,9 @@ public class GameActivity extends AppCompatActivity {
     private int scoreOne;
     private int scoreTwo;
     private int scoreThree;
+    private int scoreOneMultiplier = 1;
+    private int scoreTwoMultiplier = 1;
+    private int scoreThreeMultiplier = 1;
     private int currentSum;
     private int remainingPoints;
 
@@ -61,6 +65,7 @@ public class GameActivity extends AppCompatActivity {
         playerCount = Integer.parseInt(i.getStringExtra("players"));
         game = Integer.parseInt(i.getStringExtra("game"));
         playerNames = i.getStringArrayExtra("playerNames");
+        finishSetting = i.getStringExtra("finishSetting");
 
         // Add player text views
         playerFields[0] = (TextView) findViewById(R.id.playerOne);
@@ -134,6 +139,18 @@ public class GameActivity extends AppCompatActivity {
         // set multiplier if double/triple is selected
         multiplier = doubleBtn.isChecked() ? 2 : (tripleBtn.isChecked() ? 3 : 1);
 
+        // Set if throw was a multiplier
+        if (pointsClicked == 0) {
+            scoreOneMultiplier = multiplier;
+        }
+        if (pointsClicked == 1) {
+            scoreTwoMultiplier = multiplier;
+        }
+        if (pointsClicked == 2) {
+            scoreThreeMultiplier = multiplier;
+        }
+
+        // Set points
         switch (id) {
             case R.id.points_1:
                 setPoints(multiplier);
@@ -196,10 +213,25 @@ public class GameActivity extends AppCompatActivity {
                 setPoints(20 * multiplier);
                 break;
             case R.id.points_bull:
+
                 setPoints(25);
                 break;
             case R.id.points_bulls_eye:
+                // Set if throw was a multiplier
+                if (pointsClicked == 0) {
+                    scoreOneMultiplier = 2;
+                }
+                if (pointsClicked == 1) {
+                    scoreTwoMultiplier = 2;
+                }
+                if (pointsClicked == 2) {
+                    scoreThreeMultiplier = 2;
+                }
+
                 setPoints(50);
+                break;
+            case R.id.points_classic:
+                setPoints(1, 20, 5);
                 break;
         }
 
@@ -240,7 +272,6 @@ public class GameActivity extends AppCompatActivity {
      */
     public void onAcceptClicked(View v) {
         Player player = players.get(currentPlayer);
-        this.pointsClicked = 0;
 
         // check points of current player
         if ((player.getPoints() - currentSum) < 0) {
@@ -264,7 +295,32 @@ public class GameActivity extends AppCompatActivity {
                 this.players.get(currentPlayer).setHighscore(currentSum);
             }
 
-            finishGame();
+            // Check for finish setting and use the given option.
+            if (finishSetting.equals("doubleOut")) {
+                if (pointsClicked == 1) {
+                    if (scoreOneMultiplier == 2) {
+                        finishGame();
+                        return;
+                    }
+                } else if (pointsClicked == 2) {
+                    if (scoreTwoMultiplier == 2) {
+                        finishGame();
+                        return;
+                    }
+                } else if (pointsClicked == 3) {
+                    if (scoreThreeMultiplier == 2) {
+                        finishGame();
+                        return;
+                    }
+                }
+
+                // Show Toast that it was no Double Out
+                Toast.makeText(getApplicationContext(), "No Double Out!", Toast.LENGTH_SHORT).show();
+                player.setSelected(false);
+
+            } else if (finishSetting.equals("singleOut")) {
+                finishGame();
+            }
         }
         else {
             // update current player
@@ -293,6 +349,9 @@ public class GameActivity extends AppCompatActivity {
 
         // reset all scores
         resetScores();
+
+        // reset points clicked
+        this.pointsClicked = 0;
 
         // set remaining points to players current points
         remainingPoints = player.getPoints();
@@ -404,6 +463,37 @@ public class GameActivity extends AppCompatActivity {
         // update sum score
         updateSumScore();
     }
+
+
+    /**
+     * Sets the current score text to the parameter points.
+     *
+     * @param pointsOne : points which get subtracted by the player total points.
+     * @param pointsTwo : points which get subtracted by the player total points.
+     * @param pointsThree : points which get subtracted by the player total points.
+     */
+    private void setPoints(int pointsOne, int pointsTwo, int pointsThree) {
+        // set scores
+        scoreOne = pointsOne;
+        scoreTwo = pointsTwo;
+        scoreThree = pointsThree;
+
+        // reduce remaining points and set points clicked
+        remainingPoints = players.get(currentPlayer).getPoints();
+        remainingPoints -= (pointsOne + pointsTwo + pointsThree);
+        pointsClicked = 3;
+
+        // set text views
+        scoreOneView.setText(String.valueOf(scoreOne));
+        scoreTwoView.setText(String.valueOf(scoreTwo));
+        scoreThreeView.setText(String.valueOf(scoreThree));
+        remainingPointsView.setText(String.valueOf(this.remainingPoints));
+
+
+        // update the sum score
+        updateSumScore();
+    }
+
 
 
     /**
