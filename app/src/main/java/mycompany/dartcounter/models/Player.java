@@ -1,11 +1,15 @@
 package mycompany.dartcounter.models;
 
 
+import android.content.Context;
 import android.graphics.Color;
 import android.widget.TextView;
 
+import mycompany.dartcounter.R;
+
 public class Player {
 
+    Context context;
     private String name;
     private int points;
     private TextView playerView;
@@ -13,7 +17,8 @@ public class Player {
     private int highscore;
 
 
-    public Player (String name, int points, TextView playerView) {
+    public Player (Context context, String name, int points, TextView playerView) {
+        this.context = context;
         this.name = name;
         this.points = points;
         this.playerView = playerView;
@@ -71,10 +76,13 @@ public class Player {
 
 
     public void setSelected(boolean isSelected) {
-        if (isSelected)
-            this.playerView.setTextColor(Color.RED);
-        else
+        if (isSelected) {
+            this.playerView.setTextColor(Color.WHITE);
+            this.playerView.setBackground(context.getResources().getDrawable(R.drawable.textview_current_player));
+        } else {
             this.playerView.setTextColor(Color.BLACK);
+            this.playerView.setBackgroundResource(0);
+        }
     }
 
 

@@ -75,7 +75,7 @@ public class GameActivity extends AppCompatActivity {
 
         // Create player models based on parameters
         for (int j = 1; j <= playerCount; j++) {
-            Player player = new Player(playerNames[j-1], game, playerFields[j-1]);
+            Player player = new Player(this, playerNames[j-1], game, playerFields[j-1]);
 
             // add to player array list
             players.add(player);

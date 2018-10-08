@@ -1,7 +1,9 @@
 package mycompany.dartcounter;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,8 +20,6 @@ import mycompany.dartcounter.models.Player;
 public class GameWorldActivity extends AppCompatActivity {
 
     private int numberOfPlayers;
-    private int game;
-    private TextView remainingPointsView;
     private int pointsClicked = 0;
     private ArrayList<Player> players = new ArrayList<>();
     private int currentPlayer;
@@ -107,7 +107,7 @@ public class GameWorldActivity extends AppCompatActivity {
 
         // Create player models based on parameters
         for (int j = 1; j <= numberOfPlayers; j++) {
-            Player player = new Player(playerNames[j-1], 0, playerFields[j-1]);
+            Player player = new Player(this, playerNames[j-1], 0, playerFields[j-1]);
 
             // add to player array list
             players.add(player);
@@ -139,6 +139,9 @@ public class GameWorldActivity extends AppCompatActivity {
     public void onPointCounterClicked(View v) {
         // Update variables
         pointsClicked++;
+
+        // Update that Activity has been used already
+        isActivityUsed = true;
 
         // Check which button has been clicked
         switch (v.getId()) {
@@ -400,6 +403,10 @@ public class GameWorldActivity extends AppCompatActivity {
         // Update darts thrown counter
         players.get(currentPlayer).addDartsThrown(3);
 
+
+        // Update that Activity has been used already
+        isActivityUsed = true;
+
         // Check if game is won
         if (!Arrays.asList(hasPlayerFinished).contains(false)) {
             finishGame();
@@ -498,4 +505,25 @@ public class GameWorldActivity extends AppCompatActivity {
         finish();
     }
 
+
+    /**
+     * Warning when exiting the GameActivity by pressing the Back Button.
+     */
+    @Override
+    public void onBackPressed() {
+        if (isActivityUsed) {
+            new AlertDialog.Builder(this, R.style.quit_game_dialog)
+                    .setTitle("Quit Game?")
+                    .setMessage("Are you sure you want to quit the game?")
+                    .setNegativeButton(R.string.no, null)
+                    .setPositiveButton(R.string.quit_game, new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            GameWorldActivity.super.onBackPressed();
+                        }
+                    }).create().show();
+        } else {
+            GameWorldActivity.super.onBackPressed();
+        }
+    }
 }
