@@ -65,7 +65,7 @@ public class GameActivity extends AppCompatActivity {
         playerCount = Integer.parseInt(i.getStringExtra("players"));
         game = Integer.parseInt(i.getStringExtra("game"));
         playerNames = i.getStringArrayExtra("playerNames");
-        finishSetting = i.getStringExtra("finishSetting");
+        finishSetting = i.getStringExtra("gameSetting");
 
         // Add player text views
         playerFields[0] = (TextView) findViewById(R.id.playerOne);
@@ -507,7 +507,7 @@ public class GameActivity extends AppCompatActivity {
 
 
     /**
-     * Finishes the game and goes back to home activity.
+     * Finishes the game and goes to victory activity.
      */
     private void finishGame() {
         String[] playerNames = new String[playerCount];
@@ -515,7 +515,7 @@ public class GameActivity extends AppCompatActivity {
         String[] averageScores = new String[playerCount];
         String[] highscores = new String[playerCount];
 
-        // set parameters
+        // Set stats
         for (int i = 0; i < playerNames.length; i++) {
             Player player = this.players.get(i);
 

@@ -177,7 +177,7 @@
             android:layout_marginRight="8dp"
             android:layout_weight="1"
             android:checked="true"
-            android:onClick="onFinishSettingClicked"
+            android:onClick="onGameSettingClicked"
             android:text="Single Out"
             android:textSize="18sp" />
 
@@ -188,9 +188,43 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_weight="1"
-            android:onClick="onFinishSettingClicked"
+            android:onClick="onGameSettingClicked"
             android:text="Double Out"
             android:textSize="18sp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameText">
+
+        <RadioButton
+            android:id="@+id/classicWorldBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:onClick="onGameSettingClicked"
+            android:text="Classic"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <RadioButton
+            android:id="@+id/scoreWorldBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:onClick="onGameSettingClicked"
+            android:text="Highest Score Wins"
+            android:textSize="18sp"
+            android:visibility="gone" />
     </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>

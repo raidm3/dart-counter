@@ -12,11 +12,12 @@
     <string name="bull_shot">Bull</string>
     <string name="bulls_eye_shot">Bull´s Eye</string>
     <string name="check_shot">Accept</string>
-    <string name="clear_inputs">Clear</string>
+    <string name="undo_inputs">Undo</string>
     <string name="shot_one_text">Shot 1:</string>
     <string name="shot_two_text">Shot 2:</string>
     <string name="shot_three_text">Shot 3:</string>
     <string name="total_text">Total:</string>
     <string name="quit_game">Quit Game</string>
     <string name="no">No</string>
+    <string name="finished">FINISHED</string>
 </resources>

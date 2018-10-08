@@ -19,12 +19,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String numberOfPlayers = "1";
     private String game = "301";
     private String[] playerNames = new String[4];
-    private String finishSetting = "singleOut";
+    private String gameSetting = "singleOut";
 
     private EditText playerOneNameInput;
     private EditText playerTwoNameInput;
     private EditText playerThreeNameInput;
     private EditText playerFourNameInput;
+
+    private RadioButton singleOutBtn;
+    private RadioButton doubleOutBtn;
+    private RadioButton classicWorldBtn;
+    private RadioButton scoreWorldBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gameAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         gameSpinner.setAdapter(gameAdapter);
         gameSpinner.setOnItemSelectedListener(this);
+
+        // initialize game setting buttons
+        singleOutBtn = (RadioButton) findViewById(R.id.singleOutBtn);
+        doubleOutBtn = (RadioButton) findViewById(R.id.doubleOutBtn);
+        classicWorldBtn = (RadioButton) findViewById(R.id.classicWorldBtn);
+        scoreWorldBtn = (RadioButton) findViewById(R.id.scoreWorldBtn);
     }
 
     @Override
@@ -90,12 +101,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         playerNames[3] = playerFourNameInput.getText().toString().equals("") ? "Player4" : playerFourNameInput.getText().toString();
 
         // Prepare and start new Intent
-        Intent gameIntent = new Intent(this, GameActivity.class);
-        gameIntent.putExtra("players", numberOfPlayers);
-        gameIntent.putExtra("playerNames", playerNames);
-        gameIntent.putExtra("game", game);
-        gameIntent.putExtra("finishSetting", finishSetting);
-        startActivity(gameIntent);
+        if (game.equals("301") || game.equals("501") || game.equals("701")) {
+            Intent gameIntent = new Intent(this, GameActivity.class);
+
+            // Set parameters for next Activity
+            gameIntent.putExtra("players", numberOfPlayers);
+            gameIntent.putExtra("playerNames", playerNames);
+            gameIntent.putExtra("game", game);
+            gameIntent.putExtra("gameSetting", gameSetting);
+
+            // Start new Activity
+            startActivity(gameIntent);
+        } else if (game.equals("Round the World")) {
+            Intent gameIntent = new Intent(this, GameWorldActivity.class);
+
+            // Set parameters for next Activity
+            gameIntent.putExtra("players", numberOfPlayers);
+            gameIntent.putExtra("playerNames", playerNames);
+            gameIntent.putExtra("gameSetting", gameSetting);
+
+            // Start new Activity
+            startActivity(gameIntent);
+        }
     }
 
 
@@ -103,18 +130,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * Click event handler for the finish settings radio buttons.
      * @param v
      */
-    public void onFinishSettingClicked(View v) {
+    public void onGameSettingClicked(View v) {
         boolean checked = ((RadioButton) v).isChecked();
 
         // Check which radio button was clicked
         switch (v.getId()) {
             case R.id.singleOutBtn:
                 if (checked)
-                    finishSetting = "singleOut";
+                    gameSetting = "singleOut";
                 break;
             case R.id.doubleOutBtn:
                 if (checked)
-                    finishSetting = "doubleOut";
+                    gameSetting = "doubleOut";
+                break;
+            case R.id.classicWorldBtn:
+                if (checked)
+                    gameSetting = "classic";
+                break;
+            case R.id.scoreWorldBtn:
+                if (checked)
+                    gameSetting = "score";
                 break;
         }
     }
@@ -154,6 +189,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         } else if (adapterView.getId() == R.id.gameSpinner) {
             game = (String) adapterView.getItemAtPosition(i);
+
+            // Hide/show game setting buttons depending on which game has been selected.
+            switch (game) {
+                case "301":
+                case "501":
+                case "701":
+                    singleOutBtn.setVisibility(View.VISIBLE);
+                    doubleOutBtn.setVisibility(View.VISIBLE);
+                    classicWorldBtn.setVisibility(View.GONE);
+                    scoreWorldBtn.setVisibility(View.GONE);
+                    break;
+                case "Round the World":
+                    singleOutBtn.setVisibility(View.GONE);
+                    doubleOutBtn.setVisibility(View.GONE);
+                    classicWorldBtn.setVisibility(View.VISIBLE);
+                    scoreWorldBtn.setVisibility(View.VISIBLE);
+                    break;
+            }
         }
     }
 
