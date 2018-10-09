@@ -20,4 +20,5 @@
     <string name="quit_game">Quit Game</string>
     <string name="no">No</string>
     <string name="finished">FINISHED</string>
+    <string name="finish_info_text">Skip to the stats</string>
 </resources>

@@ -17,7 +17,6 @@
             android:id="@+id/playerOneField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:visibility="invisible">
@@ -39,7 +38,6 @@
                     android:id="@+id/playerOne"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
                     android:paddingLeft="16dp"
                     android:paddingTop="4dp"
                     android:paddingRight="16dp"
@@ -63,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/button_points"
                 android:enabled="true"
@@ -110,7 +108,7 @@
             android:id="@+id/playerTwoField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:visibility="invisible">
@@ -155,7 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/button_points"
                 android:enabled="false"
@@ -201,7 +199,7 @@
             android:id="@+id/playerThreeField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:visibility="invisible">
@@ -248,7 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/button_points"
                 android:enabled="false"
@@ -294,7 +292,7 @@
             android:id="@+id/playerFourField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:visibility="invisible">
@@ -341,7 +339,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/button_points"
                 android:enabled="false"
@@ -395,8 +393,37 @@
         android:paddingRight="10dp"
         android:layout_alignParentBottom="true" >
 
-        <!-- Button Check and Clear -->
+        <LinearLayout
+            android:id="@+id/finishGameLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:visibility="invisible" >
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/button_primary"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="finishGameWorldEarly"
+                android:padding="6dp"
+                android:text="Finish Game"
+                android:textColor="#FFF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="6dp"
+                android:text="@string/finish_info_text"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Button Check and Clear -->
         <LinearLayout
             android:id="@+id/checkLayout"
             android:layout_width="fill_parent"

@@ -51,7 +51,7 @@ public class VictoryWorldActivity extends AppCompatActivity {
 
         // set heading view
         TextView victoryHeading = (TextView) findViewById(R.id.victoryHeading);
-        victoryHeading.setText(playerNameWinner + " won the game!");
+        victoryHeading.setText(playerNameWinner.equals("") ? "Nobody won the game!" : playerNameWinner + " won the Game!");
 
         // set player stats
         for (int l = 0; l < playerNames.length; l++) {

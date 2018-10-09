@@ -31,6 +31,8 @@ public class GameWorldActivity extends AppCompatActivity {
 
     // Check for game finish variables
     private Boolean[] hasPlayerFinished;
+    private String winnerPlayerName = "";
+    private LinearLayout gameFinishSection;
 
 
     // Player buttons
@@ -126,6 +128,9 @@ public class GameWorldActivity extends AppCompatActivity {
         playerThreeBtn = (Button) findViewById(R.id.playerThreeBtn);
         playerFourBtn = (Button) findViewById(R.id.playerFourBtn);
 
+        // Initialize game finish section
+        gameFinishSection = (LinearLayout) findViewById(R.id.finishGameLayout);
+
         // Set current player
         currentPlayer = 0;
         players.get(currentPlayer).setSelected(true);
@@ -152,13 +157,12 @@ public class GameWorldActivity extends AppCompatActivity {
                 if (scoreOne <= 20)
                     playerOneBtn.setText(String.format(Locale.GERMAN, "%d", scoreOne));
                 else
-                    playerOneBtn.setText("BULL / BULL'S EYE");
+                    playerOneBtn.setText("BULL");
                 if (pointsClicked == 3 || scoreOne == 22)
                     playerOneBtn.setEnabled(false);
 
                 // Check if game is won
                 if (scoreOne > 21) {
-                    hasPlayerFinished[0] = true;
                     playerOneBtn.setText(getResources().getString(R.string.finished));
                 }
 
@@ -190,13 +194,12 @@ public class GameWorldActivity extends AppCompatActivity {
                 if (scoreTwo <= 20)
                     playerTwoBtn.setText(String.format(Locale.GERMAN, "%d", scoreTwo));
                 else
-                    playerTwoBtn.setText("BULL / BULL'S EYE");
+                    playerTwoBtn.setText("BULL");
                 if (pointsClicked == 3 || scoreTwo == 22)
                     playerTwoBtn.setEnabled(false);
 
                 // Check if game is won
                 if (scoreTwo > 21) {
-                    hasPlayerFinished[1] = true;
                     playerTwoBtn.setText(getResources().getString(R.string.finished));
                 }
 
@@ -228,13 +231,12 @@ public class GameWorldActivity extends AppCompatActivity {
                 if (scoreThree <= 20)
                     playerThreeBtn.setText(String.format(Locale.GERMAN, "%d", scoreThree));
                 else
-                    playerThreeBtn.setText("BULL / BULL'S EYE");
+                    playerThreeBtn.setText("BULL");
                 if (pointsClicked == 3 || scoreThree == 22)
                     playerThreeBtn.setEnabled(false);
 
                 // Check if game is won
                 if (scoreThree > 21) {
-                    hasPlayerFinished[2] = true;
                     playerThreeBtn.setText(getResources().getString(R.string.finished));
                 }
 
@@ -266,13 +268,12 @@ public class GameWorldActivity extends AppCompatActivity {
                 if (scoreFour <= 20)
                     playerFourBtn.setText(String.format(Locale.GERMAN, "%d", scoreFour));
                 else
-                    playerFourBtn.setText("BULL / BULL'S EYE");
+                    playerFourBtn.setText("BULL");
                 if (pointsClicked == 3 || scoreFour == 22)
                     playerFourBtn.setEnabled(false);
 
                 // Check if game is won
                 if (scoreFour > 21) {
-                    hasPlayerFinished[3] = true;
                     playerFourBtn.setText(getResources().getString(R.string.finished));
                 }
 
@@ -400,6 +401,32 @@ public class GameWorldActivity extends AppCompatActivity {
     public void onAcceptWorldClicked(View v) {
         Player player = players.get(currentPlayer);
 
+        // Check if the current player has finished the game
+        switch (currentPlayer) {
+            case 0:
+                if (scoreOne > 21)
+                    hasPlayerFinished[0] = true;
+                break;
+            case 1:
+                if (scoreTwo > 21)
+                    hasPlayerFinished[1] = true;
+                break;
+            case 2:
+                if (scoreThree > 21)
+                    hasPlayerFinished[2] = true;
+                break;
+            case 3:
+                if (scoreFour > 21)
+                    hasPlayerFinished[3] = true;
+                break;
+        }
+
+        // Update winner player if current player was the first to finish
+        if (Arrays.asList(hasPlayerFinished).contains(true) && winnerPlayerName.equals("")) {
+            winnerPlayerName = player.getName();
+            gameFinishSection.setVisibility(View.VISIBLE);
+        }
+
         // Update darts thrown counter
         players.get(currentPlayer).addDartsThrown(3);
 
@@ -494,13 +521,30 @@ public class GameWorldActivity extends AppCompatActivity {
         Intent victoryIntent = new Intent(this, VictoryWorldActivity.class);
 
         // Set params
-        victoryIntent.putExtra("winnerName", players.get(currentPlayer).getName());
+        victoryIntent.putExtra("winnerName", winnerPlayerName);
         victoryIntent.putExtra("playerNames", Arrays.copyOfRange(playerNames, 0, numberOfPlayers));
         victoryIntent.putExtra("playerRounds", playerRounds);
 
         // Start new Activity
         startActivity(victoryIntent);
         finish();
+    }
+
+
+    /**
+     * Click event handler for the finish game early button.
+     */
+    public void finishGameWorldEarly(View v) {
+        new AlertDialog.Builder(this, R.style.quit_game_dialog)
+                .setTitle("Finish Game already?")
+                .setMessage("Do you want to finish the game now?\n(You will still see your stats on the next screen)")
+                .setNegativeButton(R.string.no, null)
+                .setPositiveButton(R.string.quit_game, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        finishGame();
+                    }
+                }).create().show();
     }
 
 
@@ -524,4 +568,5 @@ public class GameWorldActivity extends AppCompatActivity {
             GameWorldActivity.super.onBackPressed();
         }
     }
+
 }
