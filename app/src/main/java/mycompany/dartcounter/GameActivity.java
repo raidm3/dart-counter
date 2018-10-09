@@ -6,22 +6,19 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 import mycompany.dartcounter.models.Player;
 
 public class GameActivity extends AppCompatActivity {
 
-    private int playerCount;
+    private int numberOfPlayers;
     private int game;
     private TextView remainingPointsView;
     private int pointsClicked = 0;
@@ -62,9 +59,9 @@ public class GameActivity extends AppCompatActivity {
         Intent i = getIntent();
 
         // Get retrieved parameters
-        playerCount = Integer.parseInt(i.getStringExtra("players"));
-        game = Integer.parseInt(i.getStringExtra("game"));
         playerNames = i.getStringArrayExtra("playerNames");
+        numberOfPlayers = Integer.parseInt(i.getStringExtra("players"));
+        game = Integer.parseInt(i.getStringExtra("game"));
         finishSetting = i.getStringExtra("gameSetting");
 
         // Add player text views
@@ -74,7 +71,7 @@ public class GameActivity extends AppCompatActivity {
         playerFields[3] = (TextView) findViewById(R.id.playerFour);
 
         // Create player models based on parameters
-        for (int j = 1; j <= playerCount; j++) {
+        for (int j = 1; j <= numberOfPlayers; j++) {
             Player player = new Player(this, playerNames[j-1], game, playerFields[j-1]);
 
             // add to player array list
@@ -320,6 +317,7 @@ public class GameActivity extends AppCompatActivity {
 
             } else if (finishSetting.equals("singleOut")) {
                 finishGame();
+                return;
             }
         }
         else {
@@ -337,7 +335,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         // shift current player
-        if (currentPlayer < playerCount-1) {
+        if (currentPlayer < numberOfPlayers -1) {
             currentPlayer++;
         } else {
             currentPlayer = 0;
@@ -510,16 +508,14 @@ public class GameActivity extends AppCompatActivity {
      * Finishes the game and goes to victory activity.
      */
     private void finishGame() {
-        String[] playerNames = new String[playerCount];
-        String[] playerRounds = new String[playerCount];
-        String[] averageScores = new String[playerCount];
-        String[] highscores = new String[playerCount];
+        String[] playerRounds = new String[numberOfPlayers];
+        String[] averageScores = new String[numberOfPlayers];
+        String[] highscores = new String[numberOfPlayers];
 
         // Set stats
-        for (int i = 0; i < playerNames.length; i++) {
+        for (int i = 0; i < numberOfPlayers; i++) {
             Player player = this.players.get(i);
 
-            playerNames[i] = player.getName();
             playerRounds[i] = Integer.toString(player.getDartsThrown() / 3);
             averageScores[i] = Float.toString((game - player.getPoints()) / (player.getDartsThrown() / 3));
             highscores[i] = Integer.toString(player.getHighscore());
@@ -529,7 +525,7 @@ public class GameActivity extends AppCompatActivity {
         Intent victoryIntent = new Intent(this, VictoryActivity.class);
 
         victoryIntent.putExtra("playerName", players.get(currentPlayer).getName());
-        victoryIntent.putExtra("playerNames", playerNames);
+        victoryIntent.putExtra("playerNames", Arrays.copyOfRange(playerNames, 0, numberOfPlayers));
         victoryIntent.putExtra("playerRounds", playerRounds);
         victoryIntent.putExtra("averageScores", averageScores);
         victoryIntent.putExtra("highscores", highscores);

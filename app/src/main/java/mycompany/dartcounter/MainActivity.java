@@ -8,13 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private String numberOfPlayers = "1";
     private String game = "301";
@@ -31,21 +30,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RadioButton classicWorldBtn;
     private RadioButton scoreWorldBtn;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // set onclick listener on start button_primary
-        Button startButton = (Button) findViewById(R.id.startBtn);
-        startButton.setOnClickListener(this);
-
 
         // initialize player name text inputs
         playerOneNameInput = (EditText) findViewById(R.id.playerNameOne);
         playerTwoNameInput = (EditText) findViewById(R.id.playerNameTwo);
         playerThreeNameInput = (EditText) findViewById(R.id.playerNameThree);
         playerFourNameInput = (EditText) findViewById(R.id.playerNameFour);
+
+        // initialize game setting buttons
+        singleOutBtn = (RadioButton) findViewById(R.id.singleOutBtn);
+        doubleOutBtn = (RadioButton) findViewById(R.id.doubleOutBtn);
+        classicWorldBtn = (RadioButton) findViewById(R.id.classicWorldBtn);
+        scoreWorldBtn = (RadioButton) findViewById(R.id.scoreWorldBtn);
 
         // populate player spinner
         Spinner playerSpinner = (Spinner) findViewById(R.id.playerSpinner);
@@ -62,13 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gameAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         gameSpinner.setAdapter(gameAdapter);
         gameSpinner.setOnItemSelectedListener(this);
-
-        // initialize game setting buttons
-        singleOutBtn = (RadioButton) findViewById(R.id.singleOutBtn);
-        doubleOutBtn = (RadioButton) findViewById(R.id.doubleOutBtn);
-        classicWorldBtn = (RadioButton) findViewById(R.id.classicWorldBtn);
-        scoreWorldBtn = (RadioButton) findViewById(R.id.scoreWorldBtn);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -76,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -92,8 +90,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View v) {
+
+    /**
+     * Click event handler for the start button.
+     * @param v view
+     */
+    public void onStartClicked(View v) {
         // Get all player names
         playerNames[0] = playerOneNameInput.getText().toString().equals("") ? "Player1" : playerOneNameInput.getText().toString();
         playerNames[1] = playerTwoNameInput.getText().toString().equals("") ? "Player2" : playerTwoNameInput.getText().toString();
@@ -128,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Click event handler for the finish settings radio buttons.
-     * @param v
+     * @param v view
      */
     public void onGameSettingClicked(View v) {
         boolean checked = ((RadioButton) v).isChecked();
@@ -209,6 +211,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {

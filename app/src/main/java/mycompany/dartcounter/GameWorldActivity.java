@@ -481,14 +481,12 @@ public class GameWorldActivity extends AppCompatActivity {
      * Finishes the game.
      */
     private void finishGame() {
-        String[] playerNames = new String[numberOfPlayers];
         String[] playerRounds = new String[numberOfPlayers];
 
         // Set stats
-        for (int i = 0; i < playerNames.length; i++) {
+        for (int i = 0; i < numberOfPlayers; i++) {
             Player player = players.get(i);
 
-            playerNames[i] = player.getName();
             playerRounds[i] = Integer.toString(player.getDartsThrown() / 3);
         }
 
@@ -497,7 +495,7 @@ public class GameWorldActivity extends AppCompatActivity {
 
         // Set params
         victoryIntent.putExtra("winnerName", players.get(currentPlayer).getName());
-        victoryIntent.putExtra("playerNames", playerNames);
+        victoryIntent.putExtra("playerNames", Arrays.copyOfRange(playerNames, 0, numberOfPlayers));
         victoryIntent.putExtra("playerRounds", playerRounds);
 
         // Start new Activity
