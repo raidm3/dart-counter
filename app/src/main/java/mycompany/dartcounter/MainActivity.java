@@ -3,6 +3,7 @@ package mycompany.dartcounter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -201,14 +202,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     doubleOutBtn.setVisibility(View.VISIBLE);
                     classicWorldBtn.setVisibility(View.GONE);
                     scoreWorldBtn.setVisibility(View.GONE);
+
+                    // Reset button to default value
+                    singleOutBtn.performClick();
                     break;
                 case "Round the World":
                     singleOutBtn.setVisibility(View.GONE);
                     doubleOutBtn.setVisibility(View.GONE);
                     classicWorldBtn.setVisibility(View.VISIBLE);
                     scoreWorldBtn.setVisibility(View.VISIBLE);
+
+                    // Reset button to default value
+                    classicWorldBtn.performClick();
                     break;
             }
+
+            Log.d("test", gameSetting);
         }
     }
 
